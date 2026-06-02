@@ -14,7 +14,7 @@
         <input type="email" name="usuario" id="usuario" required
         placeholder="seu@email.com">
         <label for="senha">Senha</label>
-        <input type="password" id="senha" name="senha"required placeholder-"...">
+        <input type="password" id="senha" name="senha" placeholder="..." required >
     </form>
 </body>
 </html>
