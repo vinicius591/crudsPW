@@ -49,7 +49,7 @@
                 <td><?php echo $item['disponivel']; ?></td>
                 <td>
                     <a href="updatecard.php?id=<?php echo $item['id']; ?>"><button>Editar</button></a>
-                    <a href="indexcard.php?delete_id=<?php echo $item['id'];  ?> "onclick="return confirm('Deseja mesmo excluir')">
+                    <a href="indexcard.php?delete_id=<?php echo $item['id'];  ?> "onclick="return confirm('Deseja mesmo excluir?')">
                     <button>Excluir</button></a>
 
 

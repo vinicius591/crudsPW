@@ -6,7 +6,7 @@
     <title>Criação</title>
 
 </head>
-<body>
+<body>  
     <h1> Adicionar novos itens </h1><br>
      <form action="createcard.php" method="post">
         <label for="name">Adicionar item: </label>
