@@ -15,6 +15,7 @@
         placeholder="seu@email.com">
         <label for="senha">Senha</label>
         <input type="password" id="senha" name="senha" placeholder="..." required >
+        <button type="submit">Entrar</button>
     </form>
 </body>
 </html>

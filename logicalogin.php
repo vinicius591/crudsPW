@@ -24,9 +24,9 @@ if (!empty($usuario) && !empty($senha)) {
         }
         
     } else {
-    $_SESSION['erro_login'] = "Usuário não encontrado!";
-    header("Location: login.php");
-    exit();
+        $_SESSION['erro_login'] = "Usuário não encontrado!";
+        header("Location: login.php");
+        exit();
     }
     
 } else {
