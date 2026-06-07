@@ -1,3 +1,11 @@
+<?php
+session_start(); 
+
+if (isset($_SESSION['erro_login'])) {
+    echo  $_SESSION['erro_login'] ;
+    unset($_SESSION['erro_login']);
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>

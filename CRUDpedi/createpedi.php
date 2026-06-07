@@ -1,3 +1,25 @@
+<?php 
+include '../conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $pedidos = $_POST['pedido'];
+    $item = $_POST['item'];
+    $status = $_POST['status'];
+
+    $stmt = $conexao->prepare("INSERT INTO pedidos (mesa, item, status) VALUES (:pedido, :item, :status)");
+    $stmt->bindValue(":pedido", $pedidos);
+    $stmt->bindValue(":item", $item);
+    $stmt->bindValue(":status", $status);
+
+    if ($stmt->execute()) {
+        header("Location: indexpedi.php");
+        exit();
+    }  else {
+        $erro = $stmt->errorInfo();
+        echo "Erro ao salvar: " . $erro[2];
+    }  
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -22,25 +44,3 @@
      </form>      
 </body>
 </html>
-<?php 
-include '../conexao.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $pedidos = $_POST['pedido'];
-    $item = $_POST['item'];
-    $status = $_POST['status'];
-
-    $stmt = $conexao->prepare("INSERT INTO pedidos (mesa, item, status) VALUES (:pedido, :item, :status)");
-    $stmt->bindValue(":pedido", $pedidos);
-    $stmt->bindValue(":item", $item);
-    $stmt->bindValue(":status", $status);
-
-    if ($stmt->execute()) {
-        header("Location: indexpedi.php");
-        exit();
-    }  else {
-        $erro = $stmt->errorInfo();
-        echo "Erro ao salvar: " . $erro[2];
-    }  
-}
-?>

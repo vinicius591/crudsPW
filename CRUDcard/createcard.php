@@ -1,3 +1,25 @@
+<?php 
+include '../conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $comida = $_POST['nome'];
+    $preco = $_POST['preco'];
+    $disp = $_POST['disp'];
+
+    $stmt = $conexao->prepare("INSERT INTO cardapio (nome, preco, disponivel) VALUES (:nome, :preco, :disponivel)");
+    $stmt->bindValue(":nome", $comida);
+    $stmt->bindValue(":preco", $preco);
+    $stmt->bindValue(":disponivel", $disp);
+
+    if ($stmt->execute()) {
+        header("Location: indexcard.php");
+        exit();
+    }  else {
+        $erro = $stmt->errorInfo();
+        echo "Erro ao salvar: " . $erro[2];
+    }  
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -25,25 +47,3 @@
      </form>      
 </body>
 </html>
-<?php 
-include '../conexao.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $comida = $_POST['nome'];
-    $preco = $_POST['preco'];
-    $disp = $_POST['disp'];
-
-    $stmt = $conexao->prepare("INSERT INTO cardapio (nome, preco, disponivel) VALUES (:nome, :preco, :disponivel)");
-    $stmt->bindValue(":nome", $comida);
-    $stmt->bindValue(":preco", $preco);
-    $stmt->bindValue(":disponivel", $disp);
-
-    if ($stmt->execute()) {
-        header("Location: indexcard.php");
-        exit();
-    }  else {
-        $erro = $stmt->errorInfo();
-        echo "Erro ao salvar: " . $erro[2];
-    }  
-}
-?>

@@ -1,3 +1,25 @@
+<?php 
+include '../conexao.php';
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $mesas = $_POST['mesa'];
+    $status = $_POST['status'];
+    $capacidade = $_POST['capacidade'];
+
+    $stmt = $conexao->prepare("INSERT INTO mesas (numero_mesa, status, capacidade) VALUES (:numero_mesa, :status, :capacidade)");
+    $stmt->bindValue(":numero_mesa", $mesas);
+    $stmt->bindValue(":status", $status);
+    $stmt->bindValue(":capacidade", $capacidade);
+
+    if ($stmt->execute()) {
+        header("Location: indexmes.php");
+        exit();
+    }  else {
+        $erro = $stmt->errorInfo();
+        echo "Erro ao salvar: " . $erro[2];
+    }  
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -25,25 +47,3 @@
      </form>      
 </body>
 </html>
-<?php 
-include '../conexao.php';
-
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $mesas = $_POST['mesa'];
-    $status = $_POST['status'];
-    $capacidade = $_POST['capacidade'];
-
-    $stmt = $conexao->prepare("INSERT INTO mesas (numero_mesa, status, capacidade) VALUES (:numero_mesa, :status, :capacidade)");
-    $stmt->bindValue(":numero_mesa", $mesas);
-    $stmt->bindValue(":status", $status);
-    $stmt->bindValue(":capacidade", $capacidade);
-
-    if ($stmt->execute()) {
-        header("Location: indexmes.php");
-        exit();
-    }  else {
-        $erro = $stmt->errorInfo();
-        echo "Erro ao salvar: " . $erro[2];
-    }  
-}
-?>
