@@ -86,7 +86,7 @@
                             <td class="py-4 px-6 text-center">
                                 <?php 
                                     // Ajuste dinâmico baseado no valor do seu banco (ex: 1, 'sim', 'S', etc.)
-                                    $status = lowercase($item['disponivel']);
+                                    $status = strtolower($item['disponivel']);
                                     if ($status == '1' || $status == 'sim' || $status == 's' || $status == 'disponivel'): 
                                 ?>
                                     <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
