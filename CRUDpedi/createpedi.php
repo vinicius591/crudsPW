@@ -1,6 +1,11 @@
 <?php 
 include '../conexao.php';
 
+session_start();
+if (!isset($_SESSION['usuario_id'])){
+    header("Location: ../login.php");
+    exit();
+}
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $pedidos = $_POST['pedido'];
     $item = $_POST['item'];

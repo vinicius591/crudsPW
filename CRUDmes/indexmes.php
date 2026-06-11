@@ -1,6 +1,12 @@
 <?php 
     include '../conexao.php';
 
+    session_start();
+if (!isset($_SESSION['usuario_id'])){
+    header("Location: ../login.php");
+    exit();
+}
+
     if(isset($_GET['delete_id'])) {
         $id_delete = $_GET['delete_id'];
 
